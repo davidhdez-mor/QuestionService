@@ -22,7 +22,7 @@ namespace QuestionServiceAPI.Controllers
         public async Task<IActionResult> CreateQuestion( CreateQuestionCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return CreatedAtRoute("GetQuestionById", new {id = result.Data.Id} , command );
         }
 
         [HttpPut("/UpdateQuestion")]
@@ -36,10 +36,10 @@ namespace QuestionServiceAPI.Controllers
         public async Task<IActionResult> DeleteQuestion(DeleteQuestionCommand command)
         {
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return NoContent();
         }
 
-        [HttpGet("/GetQuestionById/{id}")]
+        [HttpGet("/GetQuestionById/{id}", Name = "GetQuestionById")]
         public async Task<IActionResult> GetQuestionById(Guid id)
         {
             var result = await _mediator.Send(new GetQuestionByIdQuery() { Id = id });
