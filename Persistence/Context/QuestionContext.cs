@@ -16,7 +16,7 @@ namespace Persistence.Context
         }
 
         public DbSet<Question> Questions { get; set; }
-        public DbSet<QuestionResponse> QuestionResponses { get; set; }
+       
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellation = new CancellationToken())
         {

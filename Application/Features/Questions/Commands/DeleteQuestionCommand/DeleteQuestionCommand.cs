@@ -9,7 +9,7 @@ namespace Application.Features.Questions.Commands.DeleteQuestionCommand
     public class DeleteQuestionCommand : IRequest<Response<Question>>
     {
         public Guid Id { get; set; }
-        public bool State { get; set; }
+
     }
 
     public class DeleteQuestionCommandHandler : IRequestHandler<DeleteQuestionCommand, Response<Question>>
@@ -30,7 +30,7 @@ namespace Application.Features.Questions.Commands.DeleteQuestionCommand
             }
             else
             {
-                question.State = request.State;
+                question.State = false;
                 await _repositoryAsync.UpdateAsync(question);
                 return new Response<Question>(question);
             }
