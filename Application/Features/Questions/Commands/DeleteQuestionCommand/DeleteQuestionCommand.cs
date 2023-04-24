@@ -25,15 +25,22 @@ namespace Application.Features.Questions.Commands.DeleteQuestionCommand
         {
             var question = await _repositoryAsync.GetByIdAsync(request.Id);
             if (question == null)
-            {
                 throw new ApiExceptions($"{request.Id} not found");
-            }
-            else
-            {
-                question.State = false;
-                await _repositoryAsync.UpdateAsync(question);
-                return new Response<Question>(question);
-            }
+
+            if ((question.Description != null))
+                throw new ApiExceptions("No changes can be made, the question has already been answered");
+
+            question.State = false;
+            await _repositoryAsync.UpdateAsync(question);
+            return new Response<Question>(question);
+
+
+
         }
+
+
     }
 }
+
+
+

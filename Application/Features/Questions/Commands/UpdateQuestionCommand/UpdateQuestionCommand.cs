@@ -39,18 +39,21 @@ namespace Application.Features.Questions.Commands.UpdateQuestionCommand
         public async Task<Response<Question>> HandleProcess(UpdateQuestionCommand request, CancellationToken cancellationToken)
         {
             var question = await _repositoryAsync.GetByIdAsync(request.Id);
+
             if (question == null)
-            {
                 throw new ApiExceptions($"{request.Id} not found");
-            }
-            else
-            {
-                question.Description = request.Description;
-                question.Order = request.Order;
-                await _repositoryAsync.UpdateAsync(question);
-                return new Response<Question>(question);
-            }
+
+
+            if (question.Description != request.Description)
+                throw new ApiExceptions("The question cannot be update because it has already been answered");
+
+
+            question.Description = request.Description;
+            question.Order = request.Order;
+            await _repositoryAsync.UpdateAsync(question);
+            return new Response<Question>(question);
         }
+
 
     }
 }
