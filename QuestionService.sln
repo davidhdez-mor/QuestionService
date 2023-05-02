@@ -7,21 +7,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{762FED39-A22
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{565222E6-1A87-4F64-8C98-94EA3671C7B8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B6A21D5E-A8DD-48AB-A298-A1267154BC68}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "src\Core", "{B6A21D5E-A8DD-48AB-A298-A1267154BC68}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructure", "Infraestructure", "{71A3C18A-AF66-4D12-AF32-235CCAA043C6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructure", "src\Infraestructure", "{71A3C18A-AF66-4D12-AF32-235CCAA043C6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{2E39F263-3B16-4A8A-90BB-944F74049CC1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "src\Presentation", "{2E39F263-3B16-4A8A-90BB-944F74049CC1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{6F552FCA-2318-468A-9F10-97F6270678D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{6F552FCA-2318-468A-9F10-97F6270678D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{9F3CFA71-1A49-4778-B773-C1865ACD6F9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{9F3CFA71-1A49-4778-B773-C1865ACD6F9D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{AAF4AC2C-7E2F-4055-B41C-E1D46F500270}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\Persistence\Persistence.csproj", "{AAF4AC2C-7E2F-4055-B41C-E1D46F500270}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestionServiceAPI", "QuestionServiceAPI\QuestionServiceAPI.csproj", "{26543638-8EAE-411D-8AC2-4766319C9C3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestionServiceAPI", "src\QuestionServiceAPI\QuestionServiceAPI.csproj", "{26543638-8EAE-411D-8AC2-4766319C9C3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{C866E84E-061D-4E88-A0C8-A86CAA833846}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\Shared\Shared.csproj", "{C866E84E-061D-4E88-A0C8-A86CAA833846}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atos.Core", "..\Atos.Core\src\Atos.Core\Atos.Core.csproj", "{B62DCADE-EE59-4361-BC82-607B38652F36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{C866E84E-061D-4E88-A0C8-A86CAA833846}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C866E84E-061D-4E88-A0C8-A86CAA833846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C866E84E-061D-4E88-A0C8-A86CAA833846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B62DCADE-EE59-4361-BC82-607B38652F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B62DCADE-EE59-4361-BC82-607B38652F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B62DCADE-EE59-4361-BC82-607B38652F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B62DCADE-EE59-4361-BC82-607B38652F36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
