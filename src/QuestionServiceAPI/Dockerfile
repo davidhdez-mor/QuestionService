@@ -7,10 +7,17 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["QuestionServiceAPI/QuestionServiceAPI.csproj", "QuestionServiceAPI/"]
-RUN dotnet restore "QuestionServiceAPI/QuestionServiceAPI.csproj"
-COPY . .
-WORKDIR "/src/QuestionServiceAPI"
+
+COPY ["QuestionService", "QuestionService/"]
+COPY ["Atos.Core", "Atos.Core/"]
+
+RUN dotnet restore "QuestionService/src/QuestionServiceAPI/QuestionServiceAPI.csproj"
+
+COPY QuestionService/ .
+COPY Atos.Core/ .
+
+WORKDIR "/src/QuestionService/src/QuestionServiceAPI"
+
 RUN dotnet build "QuestionServiceAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
