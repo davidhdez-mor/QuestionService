@@ -1,13 +1,16 @@
 ﻿using Application.Exceptios;
+using Application.Extensions;
 using Application.Interfaces;
-using Application.Wrappers;
+using Atos.Core.Abstractions.Publishers;
+using Atos.Core.EventsDTO;
 using AutoMapper;
 using Domain.Entities;
+using MassTransit;
 using MediatR;
 
 namespace Application.Features.Questions.Commands.UpdateQuestionCommand
 {
-    public class UpdateQuestionCommand : IRequest<Response<Question>>
+    public class UpdateQuestionCommand : IRequest<Wrappers.Response<Question>>
     {
         public Guid Id { get; set; }
         public string Description { get; set; }
@@ -16,15 +19,17 @@ namespace Application.Features.Questions.Commands.UpdateQuestionCommand
 
     }
 
-    public class UpdateQuestionCommandHandler : IRequestHandler<UpdateQuestionCommand, Response<Question>>
+    public class UpdateQuestionCommandHandler : IRequestHandler<UpdateQuestionCommand, Wrappers.Response<Question>>
     {
         private readonly IRepositoryAsync<Question> _repositoryAsync;
-        public UpdateQuestionCommandHandler(IRepositoryAsync<Question> repositoryAsync, IMapper mapper)
+        private readonly IPublisherCommands<QuestionUpdated> _publisherCommands;
+        public UpdateQuestionCommandHandler(IRepositoryAsync<Question> repositoryAsync, IPublisherCommands<QuestionUpdated> publisherCommands)
         {
             _repositoryAsync = repositoryAsync;
+            _publisherCommands = publisherCommands;
         }
 
-        public Task<Response<Question>> Handle(UpdateQuestionCommand request, CancellationToken cancellationToken)
+        public Task<Wrappers.Response<Question>> Handle(UpdateQuestionCommand request, CancellationToken cancellationToken)
         {
             if (request == null)
                 throw new ApiExceptions("Question not found");
@@ -32,7 +37,7 @@ namespace Application.Features.Questions.Commands.UpdateQuestionCommand
             return HandleProcess(request, cancellationToken);
         }
 
-        public async Task<Response<Question>> HandleProcess(UpdateQuestionCommand request, CancellationToken cancellationToken)
+        public async Task<Wrappers.Response<Question>> HandleProcess(UpdateQuestionCommand request, CancellationToken cancellationToken)
         {
             var question = await _repositoryAsync.GetByIdAsync(request.Id);
 
@@ -44,9 +49,8 @@ namespace Application.Features.Questions.Commands.UpdateQuestionCommand
             question.Tags = request.Tags;
             
             await _repositoryAsync.UpdateAsync(question);
-            return new Response<Question>(question);
+            await _publisherCommands.PublishEntityMessage(request.ToQuestionUpdated(), "question.updated", request.Id, cancellationToken);
+            return new Wrappers.Response<Question>(question);
         }
-
-
     }
 }
