@@ -28,8 +28,8 @@ namespace QuestionServiceAPI.Controllers
         [HttpPut("/UpdateQuestion")]
         public async Task<IActionResult> UpdateQuestion(UpdateQuestionCommand command)
         {
-            var result = await _mediator.Send(command);
-            return Ok(result);
+            await _mediator.Send(command);
+            return NoContent();
         }
 
         [HttpDelete("/DeleteQuestion")]
