@@ -14,7 +14,7 @@ namespace QuestionServiceAPI
 
             // Add services to the container.
             builder.Services.AddPersitence(configuration);
-            builder.Services.AddAplicationLayer(configuration);
+            builder.Services.AddApplicationLayer(configuration);
             builder.Services.AddSharedInfraestructure();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

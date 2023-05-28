@@ -25,5 +25,28 @@ RUN dotnet publish "QuestionServiceAPI.csproj" -c Release -o /app/publish /p:Use
 
 FROM base AS final
 WORKDIR /app
+
+ARG dbpass
+ARG dbuser
+ARG dbhost
+ARG dbport
+ARG dbname
+
+ARG mqhost
+ARG mqport
+ARG mquser
+ARG mqpass
+
+ENV MQUSER=$mquser
+ENV MQPASSWORD=$mqpassword
+ENV MQHOST=$mqhost
+ENV MQPORT=$port
+
+ENV DBPASSWORD=$dbpass
+ENV DBUSER=$dbuser
+ENV DBHOST=$dbhost
+ENV DBPORT=$dbport
+ENV DBNAME=$dbname
+
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "QuestionServiceAPI.dll"]
